@@ -1,13 +1,9 @@
-/// Support for doing something awesome.
-///
-/// More dartdocs go here.
 library;
 
 export 'src/dpress_base.dart';
 
 import 'dart:io';
 import 'src/dpress_base.dart';
-
 
 typedef HandlerMap = Map<String, Map<String, void Function(DpressRequest, DpressResponse)>>;
 
@@ -47,7 +43,7 @@ class Dpress {
     addRoute(path, "PATCH", handler);
   }
 
-  void _handleRequest(HttpRequest request) {
+  void _handleRequest(HttpRequest request) async {
     final dpressRequest = DpressRequest(request);
     final dpressResponse = DpressResponse(request.response);
 
@@ -62,7 +58,7 @@ class Dpress {
 
   Future<void> start() async {
     try {
-      final server = await HttpServer.bind(this.address, this.port);
+      final server = await HttpServer.bind(address, port, shared: true);
       print("Server started on http://$address:$port");
       await for (HttpRequest request in server) {
         _handleRequest(request);

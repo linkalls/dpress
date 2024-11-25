@@ -23,5 +23,5 @@ class DpressResponse {
     _response.close();
   }
 
-  void set statusCode(int code) => _response.statusCode = code;
+  set statusCode(int code) => _response.statusCode = code;
 }
