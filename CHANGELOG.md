@@ -11,5 +11,5 @@
 - jsonでsendする機能を追加
 
 
-### 0.0.1+Omicron
+### 0.0.2+alphaAlpha
 - readmeの更新と英語対応

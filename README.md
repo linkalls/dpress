@@ -18,7 +18,7 @@ Dpressは、Dart用の軽量なWebフレームワークで、Express.jsに触発
 
 ```yaml
 dependencies:
-  dpress: ^0.0.1+Omicron
+  dpress: ^0.0.2+alphaAlpha
 ```
 
 その後、以下のコマンドを実行してパッケージをインストールします。
@@ -213,7 +213,7 @@ Add the following to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  dpress: ^0.0.1+Omicron
+  dpress: ^0.0.2+alphaAlpha
 ```
 
 Then run the following command to install the package:
