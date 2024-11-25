@@ -1,19 +1,19 @@
 import 'package:dpress/dpress.dart';
-import 'package:test/test.dart';
+import 'package:test/test.dart' as test;
 import 'dart:io';
 import 'dart:convert';
 
 void main() {
-  group('A group of tests', () {
+  test.group('A group of tests', () {
     final app = Dpress(port: 8080, address: "localhost");
 
-    setUp(() {
+    test.setUp(() {
       app.start();
     });
 
     
 
-    test('access to "/" => "Hello, /!"', () async {
+    test.test('access to "/" => "Hello, /!"', () async {
       app.get("/", (request, response) {
         response.send("Hello, /!");
       });
@@ -23,11 +23,11 @@ void main() {
       final response = await request.close();
       final responseBody = await response.transform(utf8.decoder).join();
 
-      expect(responseBody, "Hello, /!");
+      test.expect(responseBody, "Hello, /!");
       client.close();
     });
 
-    test('access to "/a" => "Hello, /a!"', () async {
+    test.test('access to "/a" => "Hello, /a!"', () async {
       app.get("/a", (request, response) {
         response.send("Hello, /a!");
       });
@@ -37,11 +37,11 @@ void main() {
       final response = await request.close();
       final responseBody = await response.transform(utf8.decoder).join();
 
-      expect(responseBody, "Hello, /a!");
+      test.expect(responseBody, "Hello, /a!");
       client.close();
     });
 
-    test('access to "/hello" with GET => "Hello, World!"', () async {
+    test.test('access to "/hello" with GET => "Hello, World!"', () async {
       app.get("/hello", (request, response) {
         response.send("Hello, World!");
       });
@@ -51,11 +51,11 @@ void main() {
       final response = await request.close();
       final responseBody = await response.transform(utf8.decoder).join();
 
-      expect(responseBody, "Hello, World!");
+      test.expect(responseBody, "Hello, World!");
       client.close();
     });
 
-    test('access to "/hello" with POST => "Hello, POST!"', () async {
+    test.test('access to "/hello" with POST => "Hello, POST!"', () async {
       app.post("/hello", (request, response) {
         response.send("Hello, POST!");
       });
@@ -65,7 +65,7 @@ void main() {
       final response = await request.close();
       final responseBody = await response.transform(utf8.decoder).join();
 
-      expect(responseBody, "Hello, POST!");
+      test.expect(responseBody, "Hello, POST!");
       client.close();
     });
   });

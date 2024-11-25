@@ -1,4 +1,5 @@
 import 'dart:io';
+import "dart:convert";
 
 class DpressRequest {
   final HttpRequest _request;
@@ -20,6 +21,12 @@ class DpressResponse {
 
   void send(Object? obj) {
     _response.write(obj);
+    _response.close();
+  }
+
+  void json(Map<String, dynamic> obj) {
+    _response.headers.contentType = ContentType.json;
+    _response.write(jsonEncode(obj));
     _response.close();
   }
 
