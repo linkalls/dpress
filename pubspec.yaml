@@ -1,6 +1,6 @@
 name: dpress
 description: A lightweight express like framework.
-version: 0.0.2+alphaAlpha
+version: 0.0.2+beta
 repository: https://github.com/linkalls/dpress
 # repository: https://github.com/my_org/my_repo
 

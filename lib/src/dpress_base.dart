@@ -1,17 +1,35 @@
 import 'dart:io';
 import "dart:convert";
 
+class RouteNode {
+  // 静的な子ノード
+  Map<String, RouteNode> children = {};
+
+  // 動的な子ノード（1つのみ）
+  RouteNode? dynamicChild;
+  String? dynamicSegmentName;
+
+  // HTTPメソッドに対応する関数
+  Map<String, void Function(DpressRequest, DpressResponse)> handlers = {};
+
+  @override
+  String toString() {
+    return "RouteNode(children: $children, dynamicChild: $dynamicChild, dynamicSegmentName: $dynamicSegmentName, handlers: $handlers)";
+  }
+}
+
 class DpressRequest {
-  final HttpRequest _request;
+  final HttpRequest originalRequest;
+  final Map<String, String> parameters;
 
-  DpressRequest(this._request);
+  DpressRequest(this.originalRequest, {this.parameters = const {}});
 
-  Uri get uri => _request.uri;
-  String get method => _request.method;
-  HttpHeaders get headers => _request.headers;
-  Stream<List<int>> get body => _request;
+  Uri get uri => originalRequest.uri;
+  String get method => originalRequest.method;
+  HttpHeaders get headers => originalRequest.headers;
+  Stream<List<int>> get body => originalRequest;
 
-  HttpResponse get response => _request.response;
+  HttpResponse get response => originalRequest.response;
 }
 
 class DpressResponse {
